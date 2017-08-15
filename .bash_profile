@@ -58,7 +58,7 @@ shopt -s cdspell                            # Ignore minor spelling mistakes whe
 alias gd='git diff --color | sed "s/^\([^-+ ]*\)[-+ ]/\\1/" | less -r'
 
 alias gss='git status'
-alias ga='git add'
+alias ga='git add .'
 alias gc='git commit'
 alias gca='git commit -a'
 alias gp='git push origin HEAD'
@@ -93,7 +93,7 @@ function parse_git_branch() {
     fi
 }
 
-# get current status of git repo
+# Get current status of git repo
 function parse_git_dirty {
     status=`git status 2>&1 | tee`
     dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
