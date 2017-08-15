@@ -1,0 +1,9 @@
+
+# Set paths
+PATH="$PATH:/sw/bin/:/usr/local/:/usr/local/git/bin/:/usr/local/bin/:/usr/local/sbin/"
+PATH="$PATH:/Library/Frameworks/Python.framework/Versions/2.7/bin/" # Python 2.7 path
+PATH="$PATH:/Library/Frameworks/Python.framework/Versions/3.4/bin/" # Python 3.4 path
+
+PATH=$(echo "$PATH" | awk -v RS=':' -v ORS=":" '!a[$1]++')
+export PATH
+
