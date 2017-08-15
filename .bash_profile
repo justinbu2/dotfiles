@@ -59,7 +59,7 @@ alias gd='git diff --color | sed "s/^\([^-+ ]*\)[-+ ]/\\1/" | less -r'
 
 alias gss='git status'
 alias ga='git add .'
-alias gc='git commit'
+alias gc='git commit -m'
 alias gca='git commit -a'
 alias gp='git push origin HEAD'
 
