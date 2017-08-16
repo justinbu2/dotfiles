@@ -1,4 +1,7 @@
-# Change prompt style
+# ----------------------------------------------------
+# BASH Prompt Configuration
+# ----------------------------------------------------
+
 PS1="\n"                                # newline
 PS1+="[\[\e[32m\]\t\[\e[m\]] "          # timestamp
 PS1+="\[\e[0;31m\]\u:\w\[\e[m\]"        # user:cwd
