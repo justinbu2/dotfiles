@@ -1,0 +1,54 @@
+# ----------------------------------------------------
+# BASH Configuration Command Aliases
+# ----------------------------------------------------
+
+# Make the terminal better
+alias ls='ls -GFh'                          # Preferred 'ls' implementation
+alias l='ls'
+alias la='ls -a'
+alias ll='ls -l'
+alias lla='ls -la'
+alias cp='cp -iv'                           # Preferred 'cp' implementation
+alias mv='mv -iv'                           # Preferred 'mv' implementation
+alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
+alias rm='rm -iv'                           # Preferred 'rm' implementation
+alias less='less -FSRXc'                    # Preferred 'less' implementation
+alias grep='grep --color'                   # Preferred 'grep' implementation
+alias cd..='cd ../'                         # Go back 1 directory level
+alias ..='cd ../'                           # Go back 1 directory level
+alias ...='cd ../../'                       # Go back 2 directory levels
+alias .3='cd ../../../'                     # Go back 3 directory levels
+alias .4='cd ../../../../'                  # Go back 4 directory levels
+alias .5='cd ../../../../../'               # Go back 5 directory levels
+alias .6='cd ../../../../../../'            # Go back 6 directory levels
+
+alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
+alias show_options='shopt'                  # show_options: display bash options settings
+alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
+mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
+ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
+trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
+
+# Git aliases
+# Remove `+` and `-` from start of diff lines; just rely upon color.
+alias gd='git diff --color | sed "s/^\([^-+ ]*\)[-+ ]/\\1/" | less -r'
+
+alias gc='git clone'
+alias gss='git status'
+alias ga='git add .'
+alias gca='git commit -a'
+alias gcm='git commit -m'
+alias gp='git push origin HEAD'
+
+alias gb='git branch'
+alias gco='git checkout'
+alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+
+# Personal aliases
+alias subl='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl .'
+alias octave='/usr/local/octave/3.8.0/bin/octave-3.8.0'
+
+alias cal='cd ~/GoogleDrive/Cal/'
+alias interview='cd ~/GoogleDrive/projects/interview_questions/'
+alias proj='cd ~/GoogleDrive/projects/'
+
