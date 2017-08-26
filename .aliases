@@ -46,7 +46,7 @@ alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C
 
 # Personal aliases
 alias subl='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl .'
-alias octave='/usr/local/octave/3.8.0/bin/octave-3.8.0'
+alias octave='/usr/local/bin/octave'
 
 alias cal='cd ~/GoogleDrive/Cal/'
 alias interview='cd ~/GoogleDrive/projects/interview_questions/'
