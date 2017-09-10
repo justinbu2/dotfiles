@@ -4,6 +4,7 @@
 
 # Make the terminal better
 alias ls='ls -GFh'                          # Preferred 'ls' implementation
+alias lsc='ls'                              # Common typo when typing 'ls' then 'cd'
 alias l='ls'
 alias la='ls -a'
 alias ll='ls -l'
