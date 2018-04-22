@@ -3,11 +3,14 @@
 # ----------------------------------------------------
 
 # Set paths
-PATH="$PATH:/sw/bin/:/usr/local/:/usr/local/git/bin/:/usr/local/bin/:/usr/local/sbin/"
-PATH="$PATH:/Library/Frameworks/Python.framework/Versions/2.7/bin/" # Python 2.7 path
-PATH="$PATH:/Library/Frameworks/Python.framework/Versions/3.4/bin/" # Python 3.4 path
+PATH="/usr/local/bin:/usr/local/sbin:/usr/local:$PATH"
+PATH="$PATH:/sw/bin:/usr/local/git/bin"
 
-# Remove duplicates
-PATH=$(echo "$PATH" | awk -v RS=':' -v ORS=":" '!a[$1]++')
-export PATH
+# Set mvn path
+export MVN_PATH="/Users/justinbu/apache-maven-3.5.2"
+export PATH=$PATH:$MVN_PATH/bin
+
+# Set python path
+export PYTHON3_PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin"
+export PATH=$PATH:$PYTHON3_PATH
 
