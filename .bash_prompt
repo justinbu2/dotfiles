@@ -3,9 +3,9 @@
 # ----------------------------------------------------
 
 PS1="\n"                                # newline
-PS1+="[\[\e[32m\]\t\[\e[m\]] "          # timestamp
-PS1+="\[\e[0;31m\]\u:\w\[\e[m\]"        # user:cwd
+PS1+="\[\033[38;5;35m\][\t]\[\e[m\] "   # timestamp
+PS1+="\[\033[38;5;167m\]\u:\w\[\e[m\]"  # user:cwd
 PS1+="\n"                               # newline
-PS1+="\[\e[0;34m\]\`parse_git_branch\`\[\e[m\]$ " # git branch status
+PS1+="\[\033[38;5;68m\]\`parse_git_branch\`\[\e[m\]$ " # git branch status
 
 export PS1
