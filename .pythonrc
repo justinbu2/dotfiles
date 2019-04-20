@@ -1,0 +1,11 @@
+import readline
+
+def history(num_lines=-1):
+    total = readline.get_current_history_length()
+    if num_lines == -1:
+        # print everything by default
+        num_lines = total
+    if num_lines > 0:
+        # print the last `num_lines` lines
+        for i in range(total - num_lines, total):
+            print(readline.get_history_item(i + 1))

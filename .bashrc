@@ -207,8 +207,9 @@ last_status_color() {
 
 # Exports ----------------------------------------------------------
 export EDITOR=/usr/bin/vim
-export HISTSIZE=2000
+export HISTSIZE=10000
 export HISTCONTROL=ignoredups   # Remove duplicate history commands in terminal
+export PYTHONSTARTUP=~/.pythonrc
 
 # PS1
 PS1="\n"                                            # newline
