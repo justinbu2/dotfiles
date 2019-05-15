@@ -147,6 +147,40 @@ function fd() {
     ll /proc/"$1"/fd
 }
 
+# Git functions
+# List and index unstaged changes
+function gss() {
+    unbuffer git status -s | nl # macOS: requires `brew install expect`
+}
+
+# Stage files by index in output of `gss`
+function gad() {
+    local files=$(git status -s | awk '{print $2}')
+    local toAdd=""
+    for ((i=1;i<=$#;i++)); do
+        if [[ ${!i} =~ ^-?[0-9]+$ && ! -f ${!i} ]]; then
+            toAdd="$toAdd $(echo $files | awk -v n=${!i} '{print $n}')"
+        else
+            toAdd="$toAdd ${!i}"
+        fi
+    done
+    git add $toAdd
+}
+
+# Diff files by index in output of `gss`
+function gd() {
+    local files=$(git status -s | awk '{print $2}')
+    local toDiff=""
+    for ((i=1;i<=$#;i++)); do
+        if [[ ${!i} =~ ^-?[0-9]+$ && ! -f ${!i} ]]; then
+            toDiff="$toDiff $(echo $files | awk -v n=${!i} '{print $n}')"
+        else
+            toDiff="$toDiff ${!i}"
+        fi
+    done
+    git diff --color $toDiff
+}
+
 # Get current branch in git repo
 # Credit: jmatth from ezprompt.com
 function parse_git_branch() {
@@ -163,7 +197,7 @@ function parse_git_branch() {
 # Get current status of git repo
 # Credit: jmatth from ezprompt.com
 function parse_git_dirty {
-    status=`timeout 1 git status 2>&1 | tee`
+    status=`timeout 1 git status 2>&1 | tee` # macOS: requires `brew install coreutils`
     dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
     untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
     ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
@@ -229,7 +263,7 @@ export LESS_TERMCAP_ue=$'\E[0m'         # End underline
 export LESS_TERMCAP_us=$'\E[01;32m'     # Begin underline
 
 # Add colors to ls
-eval "$(dircolors -b)" # Add colors to ls
+eval "$(dircolors -b)" # Add colors to ls. macOS: won't work
 LS_COLORS+=":ow=01;32"
 
 # Add color to terminal (macOS)
@@ -237,7 +271,7 @@ export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # Aliases -----------------------------------------------------------
-alias ls='ls -GFh --color'
+alias ls='ls -GFh --color' # macOS: remove '--color'
 alias lsc='ls'
 alias l='ls'
 alias la='ls -a'
@@ -271,10 +305,7 @@ trash () { command mv "$@" ~/.Trash ; }     # Moves a file to the MacOS trash
 # Git aliases
 alias gc='git clone'
 alias gs='git status'
-alias gss='git status -s'
-alias gd='git diff --color' # Remove `+` and `-` from start of diff lines; just rely on color
-alias gdn='gd --name-only'
-alias gad='git add'
+alias gdn='git diff --name-only'
 alias ga='git add -A'
 alias gau='git add -u'
 alias gcp='git checkout --patch'
