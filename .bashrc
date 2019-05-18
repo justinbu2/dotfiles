@@ -153,32 +153,18 @@ function gss() {
     unbuffer git status -s | nl # macOS: requires `brew install expect`
 }
 
-# Stage files by index in output of `gss`
-function gad() {
+# Git operations by index in output of `gss`
+function git_idx() {
     local files=$(git status -s | awk '{print $2}')
-    local toAdd=""
+    local args=""
     for ((i=1;i<=$#;i++)); do
         if [[ ${!i} =~ ^-?[0-9]+$ && ! -f ${!i} ]]; then
-            toAdd="$toAdd $(echo $files | awk -v n=${!i} '{print $n}')"
+            args="$args $(echo $files | awk -v n=${!i} '{print $n}')"
         else
-            toAdd="$toAdd ${!i}"
+            args="$args ${!i}"
         fi
     done
-    git add $toAdd
-}
-
-# Diff files by index in output of `gss`
-function gd() {
-    local files=$(git status -s | awk '{print $2}')
-    local toDiff=""
-    for ((i=1;i<=$#;i++)); do
-        if [[ ${!i} =~ ^-?[0-9]+$ && ! -f ${!i} ]]; then
-            toDiff="$toDiff $(echo $files | awk -v n=${!i} '{print $n}')"
-        else
-            toDiff="$toDiff ${!i}"
-        fi
-    done
-    git diff --color $toDiff
+    git $args
 }
 
 # Get current branch in git repo
@@ -303,20 +289,24 @@ ql () { qlmanage -p "$*" >& /dev/null; }    # Opens any file in MacOS Quicklook 
 trash () { command mv "$@" ~/.Trash ; }     # Moves a file to the MacOS trash
 
 # Git aliases
-alias gc='git clone'
-alias gs='git status'
-alias gdn='git diff --name-only'
+# Using git_idx function
+alias gad='git_idx add'
+alias gau='git_idx add -u'
+alias gco='git_idx checkout'
+alias gcp='git_idx checkout --patch'
+alias gd='git_idx diff --color'
+alias gdn='git_idx diff --name-only'
+alias grh='git_idx reset HEAD'
+alias gs='git_idx status'
+
+# Vanilla
 alias ga='git add -A'
-alias gau='git add -u'
-alias gcp='git checkout --patch'
+alias gc='git clone'
 alias gcf='git clean -f'
-alias grh='git reset HEAD'
 alias gca='git commit -a'
 alias gcm='git commit -m'
 alias gp='git push origin HEAD'
-
 alias gb='git branch'
-alias gco='git checkout'
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 
 # Misc --------------------------------------------------------------
