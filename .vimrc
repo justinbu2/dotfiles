@@ -90,16 +90,6 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 """"""""""""""""""""""""""""""
 " => Misc
 """"""""""""""""""""""""""""""
-" Activate Pathogen (in ~/.vim/autoload)
-execute pathogen#infect()
-
-" Open NerdTree automatically only if no files specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-" Toggle NerdTree with Ctrl + N
-map <C-n> :NERDTreeToggle<CR>
-
 " When editing a file, always jump to the last cursor position
 autocmd BufReadPost *
 \ if ! exists("g:leave_my_cursor_position_alone") |
