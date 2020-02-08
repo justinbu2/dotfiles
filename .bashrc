@@ -300,6 +300,7 @@ alias gco='git_idx checkout'
 alias gcp='git_idx checkout --patch'
 alias gd='git_idx diff --color'
 alias gdn='git_idx diff --name-only'
+alias gds='git_idx diff --staged'
 alias grh='git_idx reset HEAD'
 alias gs='git_idx status'
 
